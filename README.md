@@ -18,11 +18,11 @@
 * (ai nerds) because they need to see the actual posibilities of artificial intelligence.
 ## Goals and My Approach
 ### Goals
-* Goal 1: 
-* (goal 2)
-* (goal 3)
+* Goal 1: Automate store setup with shopify using selenium or api's and gpt-3
+* Goal 2: Automate finding niche-related products (niches given by gpt-3)
+* Goal 3: Automate creating marketing ads and posting to tiktok on a fresh account
 ### My Approach
-* (your approach to the solution 1)
+* To automate the store setup, I will have to webscrape the shopify website to setup the store and use gpt-3 responses to customize it
 * (your approach to the solution 2)
 * (your approach to the solution 3)
 ## Project Acceptance Criteria
