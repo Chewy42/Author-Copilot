@@ -1,27 +1,24 @@
-## Extra Resources
-* [Canva Presentation](https://www.canva.com/design/DAFYniN6W94/A2TvbPNBQYO3IraNQFb-Sw/view?utm_content=DAFYniN6W94&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=GGCtZCBPrQ)
-* [Official Project Plan Document](https://docs.google.com/document/d/1I_AkIlvLpe8on2giyi0yzLafN5rmTGNL/edit?usp=sharing&ouid=101896239903986119396&rtpof=true&sd=true)
-
-# PROJECT_NAME_HERE
+# Completely Automated E-Commerce Research Project
 ## By Matt Favela B.S. Data Science, Chapman University
 
 # Project Scope
 ### Project Vision
-* (vision statement here)
+* The vision for this project is to combine all of the new artificial intelligence technologies and Python automation tools to completely automate a professional-looking e-commerce store
 ## Project Description
 ### Problem
-* (describe the problem you want to solve)
+* The problem that I would like to solve is to fix the struggles of putting in hundreds of hours into building an e-commerce business and then having it flop or not knowing what to do.
 ### Target Audience
-* (target audience 1)
-* (target audience 2)
-* (target audience 3)
+* Me
+* Entrepreneurs
+* AI Nerds (Also me)
 ### Needs
-* (why is this project needed for the target audience (1))
-* (why is this project needed for the target audience (2))
-* (why is this project needed for the target audience (3))
+"This is needed for the target audience..."
+* (myself) because I want to automate ACTUAL passive income with little-to-no financial investment
+* (entrepreneurs) because the e-commerce era is booming and they need to rapidly build and manage online stores
+* (ai nerds) because they need to see the actual posibilities of artificial intelligence.
 ## Goals and My Approach
 ### Goals
-* (goal 1)
+* Goal 1: 
 * (goal 2)
 * (goal 3)
 ### My Approach
