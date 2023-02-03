@@ -1,4 +1,4 @@
-# Completely Automated E-Commerce
+[# Completely Automated E-Commerce
 ## By Matt Favela B.S. Data Science, Chapman University - Self-Lead Research Project
 
 # Project Scope
@@ -52,3 +52,4 @@
 * (list reference/resource 1)
 * (list reference/resource 2)
 * (list reference/resource 3)
+](https://linkedin.com/in/Chewy42)
