@@ -24,11 +24,11 @@
 ### My Approach
 * To automate the store setup, I will have to webscrape the shopify website to setup the store and use gpt-3 responses to customize it
 * To automate finding a niche-related product I will webscrape websites with popular niche products automatically, then find it on aliexpress
-* 
+*  To automate the marketing I will use ai tools such as Synthesia.io and gpt-3 for advertisements
 ## Project Acceptance Criteria
-* (what requirement has to be met for this project to be considered complete? (1))
-* (what requirement has to be met for this project to be considered complete? (2))
-* (what requirement has to be met for this project to be considered complete? (3))
+* The creation of the website through shopify and/or accounts associated with it are completely automated.
+* Filling the store with products catered to the specfic niche of the website has to be completely automated
+* All marketing materials must be generated and ran through a newely generated tiktok account for that website
 ## Project Deliverables
 * (deliverable 1)
 * (deliverable 2)
@@ -52,4 +52,5 @@
 * (list reference/resource 1)
 * (list reference/resource 2)
 * (list reference/resource 3)
+](https://linkedin.com/in/Chewy42)
 ](https://linkedin.com/in/Chewy42)
