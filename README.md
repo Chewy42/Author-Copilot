@@ -1,5 +1,5 @@
-# Completely Automated E-Commerce Research Project
-## By Matt Favela B.S. Data Science, Chapman University
+# Completely Automated E-Commerce
+## By Matt Favela B.S. Data Science, Chapman University - Self-Lead Research Project
 
 # Project Scope
 ### Project Vision
@@ -24,7 +24,7 @@
 ### My Approach
 * To automate the store setup, I will have to webscrape the shopify website to setup the store and use gpt-3 responses to customize it
 * To automate finding a niche-related product I will webscrape websites with popular niche products automatically, then find it on aliexpress
-* (your approach to the solution 3)
+* 
 ## Project Acceptance Criteria
 * (what requirement has to be met for this project to be considered complete? (1))
 * (what requirement has to be met for this project to be considered complete? (2))
