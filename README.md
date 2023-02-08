@@ -30,7 +30,7 @@
 * Filling the store with products catered to the specfic niche of the website has to be completely automated
 * All marketing materials must be generated and ran through a newely generated tiktok account for that website
 ## Project Deliverables
-* (deliverable 1)
+* Automated Shopify Store
 * (deliverable 2)
 * (deliverable 3)
 ## Project Exclusions
