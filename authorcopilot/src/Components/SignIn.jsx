@@ -1,8 +1,26 @@
 import React from "react";
-
 import Header from "./Header";
+import axios from "axios";
 
 const SignIn = () => {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await axios.post("http://localhost:3001/api/auth/signin", {
+      email,
+      password,
+    });
+    console.log(response);
+
+    if (response.data.accessToken) {
+        localStorage.setItem("user", JSON.stringify(response.data));
+    }
+
+    window.location.reload();
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -13,7 +31,7 @@ const SignIn = () => {
             Sign In
           </h2>
 
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label
                 htmlFor="email"
@@ -26,6 +44,9 @@ const SignIn = () => {
                 type="email"
                 id="email"
                 className="w-full px-3 py-2 border-2 border-blue-300 rounded focus:outline-none focus:border-blue-600"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               />
             </div>
 
@@ -41,6 +62,9 @@ const SignIn = () => {
                 type="password"
                 id="password"
                 className="w-full px-3 py-2 border-2 border-blue-300 rounded focus:outline-none focus:border-blue-600"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
             </div>
 

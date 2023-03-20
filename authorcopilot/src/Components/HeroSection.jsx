@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -12,12 +13,12 @@ const HeroSection = () => {
           Harness the power of GPT-4 to automate the ebook writing process.
         </p>
 
-        <a
-          href="#get-started"
+        <Link
+          to="/signup"
           className="bg-blue-600 text-white hover:bg-blue-500 px-6 py-3 rounded-md shadow-md"
         >
           Get Started
-        </a>
+        </Link>
       </div>
     </section>
   );

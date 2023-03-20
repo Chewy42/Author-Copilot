@@ -1,15 +1,21 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Menu } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
 
+
 const Header = () => {
+
+    
+
   return (
     <header className="bg-white p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-xl font-bold text-blue-600">
-          Author<span className="text-blue-300">Copilot</span>
-        </div>
+      <Link to="/" className="flex items-center">
+          <div className="text-xl font-bold text-blue-600">
+            Author<span className="text-blue-300">Copilot</span>
+          </div>
+        </Link>
 
         <nav className="flex items-center">
           <Menu as="div" className="relative inline-block text-left mr-4">
