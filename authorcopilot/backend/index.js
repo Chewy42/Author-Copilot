@@ -12,9 +12,6 @@ app.use(express.json());
 
 app.use(cors());
 
-// Replace this connection string with your own MongoDB connection string
-
-//bring in MONGODB_URI from .env file
 const MONGODB_URI = process.env.MONGODB_URI;
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
@@ -45,7 +42,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
