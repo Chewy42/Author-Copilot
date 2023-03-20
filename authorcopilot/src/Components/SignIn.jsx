@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import Header from "./Header";
 import axios from "axios";
+import AuthContext from './contexts/AuthContext'; 
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const { setIsAuthenticated } = useContext(AuthContext);   
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,11 +18,12 @@ const SignIn = () => {
     });
     console.log(response);
 
-    if (response.data.accessToken) {
+    if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
-    }
+        setIsAuthenticated(true);
+        return navigate("/panel");
 
-    window.location.reload();
+    }
   };
 
   return (
