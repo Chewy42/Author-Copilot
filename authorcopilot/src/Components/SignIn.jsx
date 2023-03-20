@@ -1,14 +1,14 @@
 import React, {useContext, useState} from "react";
 import Header from "./Header";
 import axios from "axios";
-import AuthContext from './contexts/AuthContext';
+import AuthProvider from './contexts/AuthContext';
 import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState("");
-  const { setIsAuthenticated } = useContext(AuthContext);
+  const { setIsAuthenticated } = useContext(AuthProvider);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
