@@ -11,12 +11,12 @@ const App = () => {
 
     const isAuthenticated = !!localStorage.getItem("user");
 
-    const PublicRoute = ({ children }) => {
-        return isAuthenticated ? children : <Navigate to="/signin" />;
+    const PublicRoute = ({ children, redirectTo }) => {
+        return isAuthenticated ? children : <Navigate to="/panel" />;
     };
 
-    const PrivateRoute = ({ children }) => {
-        return !isAuthenticated ? children : <Navigate to="/panel" />;
+    const PrivateRoute = ({ children, redirectTo = "/signin" }) => {
+        return isAuthenticated ? children : <Navigate to={redirectTo} />;
     };
 
     return (
@@ -25,8 +25,8 @@ const App = () => {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/signin" element={<PublicRoute><SignIn /></PublicRoute>} />
                 <Route path="/signup" element={<PublicRoute><SignUp /></PublicRoute>} />
-                <Route path="/panel" element={<PrivateRoute><Panel /></PrivateRoute>} />
-                <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
+                <Route path="/panel" element={<PrivateRoute redirectTo="/signin"><Panel /></PrivateRoute>} />
+                <Route path="/settings" element={<PrivateRoute redirectTo="/signup"><Settings /></PrivateRoute>} />
             </Routes>
         </Router>
     );
