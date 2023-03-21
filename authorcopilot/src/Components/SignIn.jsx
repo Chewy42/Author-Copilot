@@ -2,14 +2,14 @@ import React, {useContext, useState} from "react";
 import Header from "./Header";
 import axios from "axios";
 import AuthProvider from './contexts/AuthContext';
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const SignIn = () => {
+    const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState("");
   const { setIsAuthenticated } = useContext(AuthProvider);
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,8 +23,6 @@ const SignIn = () => {
       if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
         setIsAuthenticated(true);
-        return navigate("/panel");
-
       }
     } catch (error) {
       setAlert("Invalid credentials. Please try again.");

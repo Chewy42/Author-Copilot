@@ -1,57 +1,35 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./HomePage";
 import SignIn from "./Components/SignIn";
 import SignUp from "./Components/SignUp";
 import Panel from './Components/Panel';
 import Settings from "./Components/Settings";
-import { AuthProvider } from "./Components/contexts/AuthContext";
-import { Navigate } from "react-router-dom";
 
-function App() {
+const App = () => {
 
-  //restrict panel and settings page to authenticated users
-  const PrivateRoute = ({ children: Component, ...rest }) => (
-      localStorage.getItem("user") ? (
-          <Route element={Component} to="/panel" />
-      ) : (
-          <Navigate to="/signin" />
-      )
-  );
+    const isAuthenticated = !!localStorage.getItem("user");
 
-  //restrict user from going to signin or signup while logged in
-  const PublicRoute = ({ children: Component, ...rest }) => (
-      !localStorage.getItem("user") ? (
-          <Route element={Component} to="/signin" />
-      ) : (
-          <Navigate to="/panel" />
-      )
-  );
+    const PublicRoute = ({ children }) => {
+        return isAuthenticated ? children : <Navigate to="/signin" />;
+    };
 
-  return (
-      <AuthProvider>
-        <div className="App">
-          <Router>
+    const PrivateRoute = ({ children }) => {
+        return !isAuthenticated ? children : <Navigate to="/panel" />;
+    };
+
+    return (
+        <Router>
             <Routes>
-              <Route path="/" element={<HomePage />} />
-              <PublicRoute path="/signin">
-                <SignIn />
-              </PublicRoute>
-              <PublicRoute path="/signup">
-                <SignUp />
-              </PublicRoute>
-              <PrivateRoute path="/panel">
-                <Panel />
-              </PrivateRoute>
-              <PrivateRoute path="/settings">
-                <Settings />
-              </PrivateRoute>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/signin" element={<PublicRoute><SignIn /></PublicRoute>} />
+                <Route path="/signup" element={<PublicRoute><SignUp /></PublicRoute>} />
+                <Route path="/panel" element={<PrivateRoute><Panel /></PrivateRoute>} />
+                <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
             </Routes>
-          </Router>
-        </div>
-      </AuthProvider>
-  );
-}
+        </Router>
+    );
+};
 
 export default App;

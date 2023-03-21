@@ -1,15 +1,17 @@
-import React, { useContext } from "react";
-import { Menu } from "@headlessui/react";
+import React, {useContext} from "react";
+import {Menu} from "@headlessui/react";
 import AuthContext from "./contexts/AuthContext";
-import { Link } from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 
 const Header = () => {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
-  const handleLogout = () => {
-    localStorage.removeItem('user');
-    window.location.reload();
-  }
+    //handle logout by removing the user from local storage and setting isAuthenticated to false
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        setIsAuthenticated(false);
+        window.location.reload();
+    }
 
   return (
       <header className="bg-white p-4 shadow-md">

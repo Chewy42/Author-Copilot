@@ -1,17 +1,17 @@
 import React from "react";
 
-import { Menu } from "@headlessui/react";
+import {Menu} from "@headlessui/react";
 
-import { ChevronDownIcon } from "@heroicons/react/outline";
-import { Link } from "react-router-dom";
+import {ChevronDownIcon} from "@heroicons/react/outline";
+import {Link} from "react-router-dom";
 
 const Sidebar = () => {
   return (
     <aside className="w-64 bg-blue-600 text-white">
       <div className="p-6">
-        <h1 className="text-xl font-bold">
+        <Link to="/panel" className="text-xl font-bold">
           Author<span className="text-blue-300">Copilot</span>
-        </h1>
+        </Link>
       </div>
 
       <nav>

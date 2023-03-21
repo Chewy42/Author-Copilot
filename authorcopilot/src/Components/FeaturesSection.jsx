@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CheckCircleIcon } from "@heroicons/react/outline";
+import {CheckCircleIcon} from "@heroicons/react/outline";
 
 const FeaturesSection = () => {
   return (

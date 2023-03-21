@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExclamationCircleIcon } from '@heroicons/react/solid';
+import {ExclamationCircleIcon} from '@heroicons/react/solid';
 
 const AlertBox = ({ message }) => {
     return (
