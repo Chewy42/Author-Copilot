@@ -9,7 +9,7 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState("");
-    const {setIsAuthenticated} = useContext(AuthContext);
+  const { handleSignIn } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,17 +18,17 @@ const SignIn = () => {
         email,
         password,
       });
-      console.log(response);
 
       if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
-        setIsAuthenticated(true);
+        handleSignIn();
+        navigate("/panel");
       }
     } catch (error) {
+      console.log(error);
       setAlert("Invalid credentials. Please try again.");
     }
   };
-
   return (
       <div className="min-h-screen flex flex-col">
         <Header />

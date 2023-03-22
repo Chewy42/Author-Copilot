@@ -41,6 +41,22 @@ router.get("/api/user", authenticate, async (req, res) => {
 router.post("/signup", async (req, res) => {
     const {name, email, password, confirmPassword} = req.body;
 
+    // Name validation rules
+    const nameRegex = /^[a-zA-Z ]{2,30}$/;
+    if (!nameRegex.test(name)) {
+        return res.status(400).json({
+            message: "Name should be at least 2 characters long and contain only letters and spaces",
+        });
+    }
+
+    // Email validation rules
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    if (!emailRegex.test(email)) {
+        return res.status(400).json({
+            message: "Please enter a valid email address",
+        });
+    }
+
     // Password validation rules
     const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])(?=.*[a-z]).{6,}$/;
     if (!passwordRegex.test(password)) {

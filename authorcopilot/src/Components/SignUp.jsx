@@ -1,16 +1,19 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "./contexts/AuthContext";
 import axios from "axios";
 
 import Header from "./Header";
 import AlertBox from "./AlertBox";
 
 const SignUp = () => {
-
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
+    const {handleSignUp } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,9 +24,14 @@ const SignUp = () => {
                 password,
                 confirmPassword
             });
-            console.log(response);
-        } catch (err) {
-            setError(err.response.data.message);
+            if (response.data.token) {
+                localStorage.setItem("user", JSON.stringify(response.data));
+                handleSignUp();
+                navigate("/panel");
+            }
+        } catch (error) {
+            console.log(error);
+            setError(error.response.data.message);
         }
     };
 
@@ -37,7 +45,7 @@ const SignUp = () => {
                         Sign Up
                     </h2>
 
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label
                                 htmlFor="name"

@@ -1,32 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
-import "./App.css";
+import AuthContext from "./Components/contexts/AuthContext";
 import HomePage from "./HomePage";
 import SignIn from "./Components/SignIn";
 import SignUp from "./Components/SignUp";
-import Panel from './Components/Panel';
+import Panel from "./Components/Panel";
 import Settings from "./Components/Settings";
 
 const App = () => {
+    const { isAuthenticated } = useContext(AuthContext);
 
-    const isAuthenticated = !!localStorage.getItem("user");
-
-    const PublicRoute = ({ children, redirectTo }) => {
-        return isAuthenticated ? children : <Navigate to="/panel" />;
+    const PublicRoute = ({ element }) => {
+        return !isAuthenticated ? element : <Navigate to="/panel" replace />;
     };
 
-    const PrivateRoute = ({ children, redirectTo = "/signin" }) => {
-        return isAuthenticated ? children : <Navigate to={redirectTo} />;
+    const PrivateRoute = ({ element }) => {
+        return isAuthenticated ? element : <Navigate to="/signin" replace />;
     };
 
     return (
         <Router>
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/signin" element={<PublicRoute><SignIn /></PublicRoute>} />
-                <Route path="/signup" element={<PublicRoute><SignUp /></PublicRoute>} />
-                <Route path="/panel" element={<PrivateRoute redirectTo="/signin"><Panel /></PrivateRoute>} />
-                <Route path="/settings" element={<PrivateRoute redirectTo="/signup"><Settings /></PrivateRoute>} />
+                <Route path="/signin" element={<PublicRoute element={<SignIn />} />} />
+                <Route path="/signup" element={<PublicRoute element={<SignUp />} />} />
+                <Route path="/panel" element={<PrivateRoute element={<Panel />} />} />
+                <Route path="/settings" element={<PrivateRoute element={<Settings />} />} />
             </Routes>
         </Router>
     );
