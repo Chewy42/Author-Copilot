@@ -5,6 +5,9 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 
 const Panel = () => {
+
+
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />

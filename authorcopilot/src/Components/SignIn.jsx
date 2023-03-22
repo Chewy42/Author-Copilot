@@ -21,11 +21,10 @@ const SignIn = () => {
 
       if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
-        handleSignIn();
+        handleSignIn(response.data);
         navigate("/panel");
       }
     } catch (error) {
-      console.log(error);
       setAlert("Invalid credentials. Please try again.");
     }
   };

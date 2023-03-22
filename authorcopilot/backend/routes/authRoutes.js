@@ -26,17 +26,35 @@ const authenticate = (req, res, next) => {
     }
 };
 
-router.get("/api/user", authenticate, async (req, res) => {
-    try {
-        const user = await User.findById(req.user.id);
+router.get("/user/:id", authenticate, async (req, res) => {
+    const userId = req.params.id;
+    const authHeader = req.headers.authorization;
 
-        // Send user data back to client
+    if (!authHeader) {
+        return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    const token = authHeader.split(" ")[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+
+    if (userId !== decodedToken.id) {
+        return res.status(403).json({ message: "Forbidden" });
+    }
+
+    try {
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
         res.json(user);
     } catch (error) {
         console.error(error);
         res.status(500).send("Server error");
     }
 });
+
 
 router.post("/signup", async (req, res) => {
     const {name, email, password, confirmPassword} = req.body;
@@ -123,31 +141,54 @@ router.post("/signin", async (req, res) => {
     }
 });
 
-router.put("/update", authenticate, async (req, res) => {
-    const {email, password} = req.body;
+router.put("/update/:id", authenticate, async (req, res) => {
+    const { name, email, password } = req.body;
+    const { id } = req.params;
 
     try {
-        const existingUser = await User.findOne({email});
+        const existingUser = await User.findById(id);
 
         if (!existingUser) {
-            return res.status(404).json({message: "User not found"});
+            return res.status(404).json({ message: "User not found" });
         }
 
         if (existingUser._id.toString() !== req.user.id) {
-            return res.status(403).json({message: "Forbidden"});
+            return res.status(403).json({ message: "Forbidden" });
+        }
+
+        // Check if the email being updated already exists
+        const userWithEmail = await User.findOne({ email });
+        if (userWithEmail && userWithEmail._id.toString() !== id) {
+            return res.status(400).json({ message: "Email already exists" });
+        }
+
+        const authHeader = req.headers.authorization;
+        if (!authHeader) {
+            return res.status(401).json({ message: "Unauthorized" });
+        }
+
+        const token = authHeader.split(" ")[1];
+        const decodedToken = jwt.verify(token, JWT_SECRET);
+
+        if (existingUser._id.toString() !== decodedToken.id) {
+            return res.status(403).json({ message: "Forbidden" });
         }
 
         const hashedPassword = await bcrypt.hash(password, 12);
-
+        existingUser.name = name;
+        existingUser.email = email;
         existingUser.password = hashedPassword;
 
         await existingUser.save();
 
-        res.status(200).json({message: "User updated successfully"});
+        res.status(200).json({ message: "User updated successfully" });
     } catch (error) {
-        res.status(500).json({message: "Something went wrong"});
+        res.status(500).json({ message: "Something went wrong" });
     }
 });
+
+
+
 
 router.delete("/delete", authenticate, async (req, res) => {
     const {email} = req.body;

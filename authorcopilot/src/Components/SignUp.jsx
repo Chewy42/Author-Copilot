@@ -1,5 +1,5 @@
-import React, {useState, useContext} from "react";
-import { useNavigate } from "react-router-dom";
+import React, {useContext, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import AuthContext from "./contexts/AuthContext";
 import axios from "axios";
 
@@ -12,7 +12,7 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
-    const {handleSignUp } = useContext(AuthContext);
+    const {handleSignUp} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -26,8 +26,9 @@ const SignUp = () => {
             });
             if (response.data.token) {
                 localStorage.setItem("user", JSON.stringify(response.data));
-                handleSignUp();
+                handleSignUp(response.data);
                 navigate("/panel");
+                console.log(response.data)
             }
         } catch (error) {
             console.log(error);
@@ -37,7 +38,7 @@ const SignUp = () => {
 
     return (
         <div className="min-h-screen flex flex-col">
-            <Header />
+            <Header/>
 
             <main className="flex-grow bg-blue-50 py-20">
                 <div className="container mx-auto max-w-md bg-white shadow-md rounded-md p-6">
@@ -125,7 +126,7 @@ const SignUp = () => {
                         >
                             Sign Up
                         </button>
-                        {error && <AlertBox message={error} />}
+                        {error && <AlertBox message={error}/>}
                     </form>
                 </div>
             </main>
