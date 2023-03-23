@@ -4,7 +4,6 @@ import Modal from "./Modal";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import AuthContext from "./contexts/AuthContext";
-import Axios from "axios";
 
 const Settings = () => {
     const [name, setName] = useState("");
@@ -17,7 +16,7 @@ const Settings = () => {
     const [placeholderName, setPlaceholderName] = useState("ERROR");
     const [placeholderEmail, setPlaceholderEmail] = useState("ERROR");
 
-    //send get request to get user data
+    
     const getUserData = async (id, token) => {
         try {
             const response = await axios.get(`http://localhost:3001/api/auth/user/${userId}`, {
@@ -52,15 +51,20 @@ const Settings = () => {
 
 
     const handleDelete = async () => {
-        try {
-            const response = await axios.delete("http://localhost:3001/api/auth/delete",
-                {data: {password: deletePassword}, withCredentials: true});
-            console.log(response.data);
-        } catch (error) {
-            console.error(error);
-        }
-        setIsModalOpen(false);
-    };
+    try {
+        const response = await axios.delete(
+            "http://localhost:3001/api/auth/delete",
+            {
+                data: { password: deletePassword },
+                withCredentials: true,
+            }
+        );
+        console.log(response.data);
+    } catch (error) {
+        console.error(error);
+    }
+    setIsModalOpen(false);
+};
 
     return (<div className="min-h-screen flex flex-col">
         <Header/>

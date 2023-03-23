@@ -10,24 +10,26 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState("");
   const { handleSignIn } = useContext(AuthContext);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:3001/api/auth/signin", {
-        email,
-        password,
-      });
-
-      if (response.data.token) {
-        localStorage.setItem("user", JSON.stringify(response.data));
-        handleSignIn(response.data);
-        navigate("/panel");
-      }
-    } catch (error) {
-      setAlert("Invalid credentials. Please try again.");
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post("http://localhost:3001/api/auth/signin", {
+      email,
+      password,
+    });
+    if (response.data.token) {
+      localStorage.setItem("user", JSON.stringify(response.data));
+      handleSignIn(response.data);
+      navigate("/panel");
     }
-  };
+  } catch (error) {
+    if (error.response.status === 401) {
+      setAlert("Invalid credentials. Please try again.");
+    } else {
+      setAlert("An unexpected error occurred. Please try again.");
+    }
+  }
+};
   return (
       <div className="min-h-screen flex flex-col">
         <Header />

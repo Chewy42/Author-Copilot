@@ -1,11 +1,13 @@
-import React from "react";
+import React from 'react';
+import { Menu } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/outline';
+import { Link } from 'react-router-dom';
 
-import {Menu} from "@headlessui/react";
+const Sidebar = ({ onMenuItemClick }) => {
+  const handleMenuItemClick = (view) => {
+    onMenuItemClick(view);
+  };
 
-import {ChevronDownIcon} from "@heroicons/react/outline";
-import {Link} from "react-router-dom";
-
-const Sidebar = () => {
   return (
     <aside className="w-64 bg-blue-600 text-white">
       <div className="p-6">
@@ -22,7 +24,19 @@ const Sidebar = () => {
           </Menu.Button>
 
           <Menu.Items className="absolute w-64 mt-2 origin-top-left bg-blue-600 divide-y divide-blue-700 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            {/* ... dashboard menu items */}
+            <Menu.Item>
+              {({ active }) => (
+                <Link
+                  to="#"
+                  onClick={() => handleMenuItemClick('supervised-writing')}
+                  className={`${
+                    active ? 'bg-blue-700' : ''
+                  } block px-6 py-3 hover:bg-blue-700 rounded-md`}
+                >
+                  Supervised Writing
+                </Link>
+              )}
+            </Menu.Item>
           </Menu.Items>
         </Menu>
 
