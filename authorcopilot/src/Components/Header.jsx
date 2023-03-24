@@ -46,10 +46,10 @@ const Header = () => {
                     {isAuthenticated && (
                         <>
                             <Link
-                                to="/panel"
+                                to="/dashboard"
                                 className="bg-blue-600 text-white hover:bg-blue-500 px-4 py-2 rounded-md shadow-md mr-2"
                             >
-                                Panel
+                                Dashboard
                             </Link>
 
                             <button

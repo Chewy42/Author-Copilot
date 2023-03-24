@@ -9,7 +9,7 @@ import AuthContext from './Components/contexts/AuthContext';
 import HomePage from './HomePage';
 import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
-import Panel from './Components/Panel';
+import Dashboard from './Components/Dashboard';
 import Settings from './Components/Settings';
 import SupervisedWriting from './Components/SupervisedWriting'; // Add this import
 
@@ -17,7 +17,7 @@ const App = () => {
   const { isAuthenticated } = useContext(AuthContext);
 
   const PublicRoute = ({ element }) => {
-    return !isAuthenticated ? element : <Navigate to="/panel" replace />;
+    return !isAuthenticated ? element : <Navigate to="/dashboard" replace />;
   };
 
   const PrivateRoute = ({ element }) => {
@@ -30,7 +30,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/signin" element={<PublicRoute element={<SignIn />} />} />
         <Route path="/signup" element={<PublicRoute element={<SignUp />} />} />
-        <Route path="/panel" element={<PrivateRoute element={<Panel />} />} />
+        <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
         <Route
           path="/settings"
           element={<PrivateRoute element={<Settings />} />}

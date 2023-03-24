@@ -3,7 +3,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import SupervisedWriting from './SupervisedWriting';
 
-const Panel = () => {
+const Dashboard = () => {
   const [currentView, setCurrentView] = useState('dashboard');
 
   const renderCurrentView = () => {
@@ -39,4 +39,4 @@ const Panel = () => {
   );
 };
 
-export default Panel;
+export default Dashboard;

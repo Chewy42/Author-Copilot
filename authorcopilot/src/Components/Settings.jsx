@@ -13,8 +13,8 @@ const Settings = () => {
     const [deletePassword, setDeletePassword] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const {userId, token} = useContext(AuthContext);
-    const [placeholderName, setPlaceholderName] = useState("ERROR");
-    const [placeholderEmail, setPlaceholderEmail] = useState("ERROR");
+    const [placeholderName, setPlaceholderName] = useState("John Doe");
+    const [placeholderEmail, setPlaceholderEmail] = useState("johndoe@authorcopilot.com");
 
     
     const getUserData = async (id, token) => {
@@ -113,7 +113,7 @@ const Settings = () => {
                                 id="email"
                                 className="w-full px-3 py-2 border-2 border-blue-300 rounded focus:outline-none focus:border-blue-600"
                                 value={email}
-                                placeholder="johndoe@gmail.com"
+                                placeholder={placeholderEmail}
                                 onChange={(event) => setEmail(event.target.value)}
                                 disabled
                             />
