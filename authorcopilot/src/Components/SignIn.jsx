@@ -17,10 +17,11 @@ const handleSubmit = async (e) => {
       email,
       password,
     });
-    if (response.data.token) {
-      localStorage.setItem("user", JSON.stringify(response.data));
+    if (response.data) {
+      console.log(response)
       handleSignIn(response.data);
-      navigate("/panel");
+      navigate("/dashboard");
+      localStorage.setItem("user", JSON.stringify(response.data));
     }
   } catch (error) {
     if (error.response.status === 401) {

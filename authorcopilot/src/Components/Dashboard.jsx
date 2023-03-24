@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import SupervisedWriting from './SupervisedWriting';
+import Analytics from './Analytics';
 
 const Dashboard = () => {
   const [currentView, setCurrentView] = useState('dashboard');
@@ -9,14 +10,7 @@ const Dashboard = () => {
   const renderCurrentView = () => {
     switch (currentView) {
       case 'dashboard':
-        return (
-          <>
-            <h2 className="text-3xl font-bold text-blue-600 mb-6">
-              Dashboard
-            </h2>
-            {/* Add the rest of the dashboard content */}
-          </>
-        );
+        return <Analytics />;
       case 'supervised-writing':
         return <SupervisedWriting />;
       default:

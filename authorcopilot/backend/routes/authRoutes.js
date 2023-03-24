@@ -55,6 +55,38 @@ router.get("/user/:id", authenticate, async (req, res) => {
     }
 });
 
+// Get request with user's id that will return their name
+router.get("/user/:id/name", authenticate, async (req, res) => {
+    const userId = req.params.id;
+    const authHeader = req.headers.authorization;
+  
+    if (!authHeader) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+  
+    const token = authHeader.split(" ")[1];
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+  
+    if (userId !== decodedToken.id) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+  
+    try {
+      const user = await User.findById(userId, 'name');
+  
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+  
+      res.json({ name: user.name });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
+
+
 
 router.post("/signup", async (req, res) => {
     const {name, email, password, confirmPassword} = req.body;
