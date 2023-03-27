@@ -40,37 +40,37 @@ const Analytics = () => {
 
   return (
     <div>
-      <h2 className="text-3xl font-bold text-blue-600 mb-6">
+      <h2 className="text-3xl font-bold text-blue-600 mb-6 select-none">
         {getTimeOfDayGreeting()}, {firstName}!
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
   <div className="flex flex-col bg-white p-6 rounded-md shadow-md">
-    <h3 className="flex-grow text-2xl font-bold text-blue-600 mb-4">
+    <h3 className="flex-grow text-2xl font-bold text-blue-600 mb-4 select-none">
       Words Generated <br /> This Month
     </h3>
-    <div className="text-4xl font-bold">74,481</div>
-    <p className="mt-2 text-sm text-gray-500">
+    <div className="text-4xl font-bold select-none">74,481</div>
+    <p className="mt-2 text-sm text-gray-500 select-none">
       Total words generated for eBooks
     </p>
   </div>
 
   <div className="flex flex-col bg-white p-6 rounded-md shadow-md">
-    <h3 className="flex-grow text-2xl font-bold text-blue-600 mb-4">
+    <h3 className="flex-grow text-2xl font-bold text-blue-600 mb-4 select-none">
       eBooks Written <br /> This Month
     </h3>
-    <div className="text-4xl font-bold">4</div>
-    <p className="mt-2 text-sm text-gray-500">
+    <div className="text-4xl font-bold select-none">4</div>
+    <p className="mt-2 text-sm text-gray-500 select-none">
       Total number of eBooks created
     </p>
   </div>
 
   <div className="flex flex-col bg-white p-6 rounded-md shadow-md">
-    <h3 className="flex-grow text-2xl font-bold text-blue-600 mb-4">
+    <h3 className="flex-grow text-2xl font-bold text-blue-600 mb-4 select-none">
       Top Genre <br /> This Month
     </h3>
-    <div className="text-4xl font-bold">eCommerce</div>
-    <p className="mt-2 text-sm text-gray-500">
+    <div className="text-4xl font-bold select-none">eCommerce</div>
+    <p className="mt-2 text-sm text-gray-500 select-none">
       Most popular genre this month
     </p>
   </div>
