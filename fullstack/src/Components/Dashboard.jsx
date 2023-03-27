@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import SupervisedWriting from './SupervisedWriting';
 import Analytics from './Analytics';
+import Unsupervised from './Unsupervised';
 
 const Dashboard = () => {
   const [currentView, setCurrentView] = useState('dashboard');
@@ -13,6 +14,8 @@ const Dashboard = () => {
         return <Analytics />;
       case 'supervised-writing':
         return <SupervisedWriting />;
+      case 'unsupervised-writing':
+        return <Unsupervised />;
       default:
         return null;
     }

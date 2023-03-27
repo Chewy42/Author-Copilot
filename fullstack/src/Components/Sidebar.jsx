@@ -64,13 +64,17 @@ const Sidebar = ({ onMenuItemClick }) => {
               Supervised Writing
             </Link>
             <Link
-              to="/unsupervised-writing"
+              onClick={() => {
+                onMenuItemClick("unsupervised-writing");
+                setMenuOpen(false);
+              }
+              }
               className="block px-6 py-3 hover:bg-blue-800 rounded-md"
             >
               Unsupervised Writing
             </Link>
             <Link
-              to="/complete-automation"
+              to="/dashboard"
               className="block px-6 py-3 hover:bg-blue-800 rounded-md"
             >
               Complete Automation
@@ -80,7 +84,11 @@ const Sidebar = ({ onMenuItemClick }) => {
         </Transition>
 
         <Link
-          to="/settings"
+          onClick={() => {
+            onMenuItemClick("settings");
+            setMenuOpen(false);
+          }
+          }
           className="block px-6 py-3 hover:bg-blue-700 rounded-md"
         >
           Settings

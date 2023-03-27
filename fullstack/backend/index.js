@@ -1,11 +1,7 @@
 require('dotenv').config();
-
 const express = require("express");
-
 const mongoose = require("mongoose");
-
 const cors = require("cors");
-
 const app = express();
 
 app.use(express.json());
@@ -27,10 +23,10 @@ mongoose.connection.on("error", (err) => {
 });
 
 // API routes
-
 const authRoutes = require("./routes/authRoutes");
-
+const chatRoutes = require('./routes/chatRoute');
 app.use("/api/auth", authRoutes);
+app.use('/api/chat', chatRoutes);
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
