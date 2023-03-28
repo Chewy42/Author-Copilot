@@ -5,6 +5,7 @@ import FeaturesSection from "./Components/FeaturesSection";
 import PricingSection from "./Components/PricingSection";
 import LimitedTimeOffer from "./Components/LimitedTimeOffer"; // Add this import
 import Footer from "./Components/Footer";
+import TestimonialsSection from "./Components/TestimonialsSection";
 
 const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ const HomePage = () => {
       <main className="flex-grow">
         <HeroSection />
         <FeaturesSection />
+        <TestimonialsSection />
         <LimitedTimeOffer />
         <PricingSection />
       </main>

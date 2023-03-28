@@ -12,6 +12,7 @@ import SignUp from './Components/SignUp';
 import Dashboard from './Components/Dashboard';
 import Settings from './Components/Settings';
 import SupervisedWriting from './Components/SupervisedWriting'; // Add this import
+import TermsOfService from './Components/TermsOfService'; // Add this import
 
 const App = () => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -37,7 +38,11 @@ const App = () => {
         />
         <Route
           path="/supervised-writing"
-          element={<PrivateRoute element={<SupervisedWriting />} />} // Add this route
+          element={<PrivateRoute element={<SupervisedWriting />} />}
+        />
+        <Route 
+          path="/terms-of-service"
+          element={<TermsOfService />}
         />
       </Routes>
     </Router>

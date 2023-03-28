@@ -1,31 +1,45 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-600 text-white py-12">
+    <footer className="bg-purple-800 text-white py-12">
       <div className="container mx-auto text-center">
         <div className="text-xl font-bold mb-4">
-          Author<span className="text-blue-300">Copilot</span>
+          Author<span className="text-purple-300">Copilot</span>
         </div>
 
         <nav className="mb-6">
-          <a
-            href="#features"
-            className="text-blue-200 hover:text-blue-100 px-4"
+          <Link
+            to="#features"
+            className="text-purple-300 hover:text-purple-200 px-4"
           >
             Features
-          </a>
+          </Link>
 
-          <a href="#pricing" className="text-blue-200 hover:text-blue-100 px-4">
+          <Link
+            to="#pricing"
+            className="text-purple-300 hover:text-purple-200 px-4"
+          >
             Pricing
-          </a>
+          </Link>
 
-          <a href="#contact" className="text-blue-200 hover:text-blue-100 px-4">
+          <Link
+            to="/contact"
+            className="text-purple-300 hover:text-purple-200 px-4"
+          >
             Contact
-          </a>
+          </Link>
+
+          <Link
+            to="/terms-of-service"
+            className="text-purple-300 hover:text-purple-200 px-4"
+          >
+            Terms of Service
+          </Link>
         </nav>
 
-        <p className="text-blue-300">
+        <p className="text-purple-300">
           &copy; {new Date().getFullYear()} AuthorCopilot. All rights reserved.
         </p>
       </div>
