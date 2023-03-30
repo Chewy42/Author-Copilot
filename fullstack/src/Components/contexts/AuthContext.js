@@ -73,7 +73,7 @@ const [userName, setUserName] = useState(
     userName,
     handleSignIn,
     handleSignUp,
-    handleSignOut,
+    handleSignOut
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

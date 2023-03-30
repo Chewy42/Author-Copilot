@@ -28,7 +28,7 @@ const Dashboard = () => {
       <main className="flex-grow flex">
         <Sidebar onMenuItemClick={setCurrentView} />
 
-        <section className="flex-grow bg-gray-100 p-6">
+        <section className="flex-grow bg-gradient-to-r to-purple-400 from-indigo-400 ease-linear transition-all duration-300 p-6">
           {renderCurrentView()}
         </section>
       </main>

@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import Header from "./Header";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 import AuthContext from "./contexts/AuthContext";
 
 const SignIn = () => {
@@ -35,9 +35,9 @@ const handleSubmit = async (e) => {
       <div className="min-h-screen flex flex-col">
         <Header />
 
-        <main className="flex-grow bg-blue-50 py-20">
-          <div className="container mx-auto max-w-md bg-white shadow-md rounded-md p-6">
-            <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">
+        <main className="flex-grow bg-gradient-to-r to-purple-400 from-indigo-400 py-20">
+          <div className="container mx-auto max-w-md bg-gray-100 border-2 drop-shadow-xl rounded-md p-6">
+            <h2 className="text-3xl font-bold text-center text-primary mb-6 select-none">
               Sign In
             </h2>
 
@@ -52,7 +52,7 @@ const handleSubmit = async (e) => {
               <div className="mb-4">
                 <label
                     htmlFor="email"
-                    className="block text-blue-700 font-semibold mb-2"
+                    className="block text-primary font-semibold mb-2 select-none"
                 >
                   Email:
                 </label>
@@ -60,7 +60,7 @@ const handleSubmit = async (e) => {
                 <input
                     type="email"
                     id="email"
-                    className="w-full px-3 py-2 border-2 border-blue-300 rounded focus:outline-none focus:border-blue-600"
+                    className="w-full px-3 py-2 border-2 border-primary focus:border-accent rounded focus:outline-none"
                     onChange={(e) => {
                       setEmail(e.target.value);
                     }}
@@ -70,7 +70,7 @@ const handleSubmit = async (e) => {
               <div className="mb-6">
                 <label
                     htmlFor="password"
-                    className="block text-blue-700 font-semibold mb-2"
+                    className="block text-primary font-semibold mb-2 select-none"
                 >
                   Password:
                 </label>
@@ -78,16 +78,20 @@ const handleSubmit = async (e) => {
               <input
                 type="password"
                 id="password"
-                className="w-full px-3 py-2 border-2 border-blue-300 rounded focus:outline-none focus:border-blue-600"
+                className="w-full px-3 py-2 border-2 border-primary focus:border-accent rounded focus:outline-none"
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
               />
             </div>
 
+            <span className="relative top-[-10px]">
+              Don't have an account yet? <Link to="/signup" className="underline text-blue-600">Sign up</Link>
+            </span>
+
             <button
               type="submit"
-              className="bg-blue-600 text-white hover:bg-blue-500 px-6 py-3 rounded-md shadow-md w-full"
+              className="hover:scale-[101%] hover:font-bold hover:text-md transition-all ease-linear duration-100 bg-accent text-white px-6 py-3 rounded-md shadow-md w-full"
             >
               Sign In
             </button>

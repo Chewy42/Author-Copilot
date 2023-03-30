@@ -17,7 +17,7 @@ const ChatWindow = () => {
   ];
 
   return (
-    <div className="chat-window overflow-y-auto h-96 mb-4">
+    <div className="chat-window overflow-y-auto w-ma h-96 mb-4">
       {messages.map((message) => (
         <ChatMessage key={message.id} message={message} />
       ))}

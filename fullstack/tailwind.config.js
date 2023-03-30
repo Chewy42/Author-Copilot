@@ -1,17 +1,25 @@
+//make the config have a light and dark mode
+
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   theme: {
+    screens: {
+      sm: '480px',
+      md: '768px',
+      lg: '976px',
+      xl: '1440px',
+    },
     extend: {
       colors: {
-        primary: "#1E3A8A",
-        secondary: "#2563EB",
-        background: "#F3F4F6",
-        accent: "#F59E0B",
-        danger: "#DC2626",
-        textPrimary: "#111827",
-        textSecondary: "#4B5563",
-        cta: "#F87171", // Call-to-action color
-        success: "#34D399",
+        primary: "#111",
+        secondary: "#7c3aed",
+        background: "#fff",
+        accent: "#7c3aed",
+        danger: "#ef4444",
+        textPrimary: "#111",
+        textSecondary: "#fff",
+        cta: "#F87171",
+        success: "#4ade80",
         info: "#3B82F6",
       },
       fontFamily: {

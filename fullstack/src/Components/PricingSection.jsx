@@ -8,7 +8,7 @@ const PricingSection = () => {
           Exclusive Limited-Time Offer
         </h2>
         <p className="text-xl text-center text-purple-900 mb-12">
-        Discover a world of possibilities with AuthorCopilot – the ultimate writing assistant that has helped thousands of satisfied customers to create their masterpieces. Act now and subscribe to AuthorCopilot to enjoy a limited-time 50% off discount offer, and unlock a range of prebuilt tools to help you create captivating ebooks. Please note that you will need to provide your own OpenAI API Key to start your subscription. Don't let this opportunity slip away – sign up now and unleash your writing potential!
+        Discover a world of possibilities with AuthorCopilot – the ultimate writing assistant that has helped thousands of satisfied customers to create their masterpieces. Act now and subscribe to AuthorCopilot to enjoy a limited-time 50% off discount offer, and unlock a range of prebuilt tools to help you create captivating ebooks. <b>Please note that you will need to provide your own OpenAI API Key use our tools</b>. Don't let this opportunity slip away – sign up now and unleash your writing potential!
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Pricing Plan 1 */}

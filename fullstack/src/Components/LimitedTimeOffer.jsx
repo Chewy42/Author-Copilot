@@ -21,6 +21,9 @@ const LimitedTimeOffer = () => {
     <section className="bg-gradient-to-r from-purple-600 to-blue-600 py-16">
       <div className="container mx-auto">
         <div className="text-center">
+        <h2 className="text-5xl font-bold text-white mb-4">
+            AuthorCopilot Launch 
+          </h2>
           <h2 className="text-4xl font-bold text-white mb-4">
             Limited Time Offer: 50% Off
           </h2>
