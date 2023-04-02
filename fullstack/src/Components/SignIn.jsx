@@ -21,7 +21,6 @@ const handleSubmit = async (e) => {
       console.log(response)
       handleSignIn(response.data);
       navigate("/dashboard");
-      localStorage.setItem("user", JSON.stringify(response.data));
     }
   } catch (error) {
     if (error.response.status === 401) {

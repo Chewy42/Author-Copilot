@@ -74,7 +74,7 @@ const Sidebar = ({ onMenuItemClick }) => {
               Unsupervised Writing
             </Link>
             <Link
-              to="/dashboard"
+              to="dashboard"
               className="text-primary block px-6 py-3 hover:bg-gray-200 rounded-md ease-linear transition-all duration-100"
             >
               Complete Automation
@@ -82,7 +82,16 @@ const Sidebar = ({ onMenuItemClick }) => {
             {/* Add more menu items */}
           </div>
         </Transition>
-
+        <Link
+          onClick={() => {
+            onMenuItemClick("my-ebook");
+            setMenuOpen(false);
+          }
+          }
+          className="text-primary text-lg font-semibold block px-6 py-3 bg-gray-100 hover:bg-gray-200 ease-linear transition-all duration-100"
+        >
+          My eBooks
+        </Link>
         <Link
           onClick={() => {
             onMenuItemClick("settings");

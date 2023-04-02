@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { CogIcon } from "@heroicons/react/outline";
+import AuthContext from "./contexts/AuthContext";
 import axios from "axios";
 
 const Unsupervised = () => {
@@ -6,24 +8,49 @@ const Unsupervised = () => {
   const [generating, setGenerating] = useState(false);
   const [generatedText, setGeneratedText] = useState("");
   const [error, setError] = useState("");
+  const { user } = useContext(AuthContext);
 
   const generateEbook = async () => {
-    setGeneratedText(true);
-    try {
-      const response = await axios.post(
-        `http://localhost:3001/api/chat/unsupervised`,
-        {
-          openai_api_key: "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",
-          orginization: "org-PIyyECxRrd44dRekgDdeywej",
-          topic,
-        }
-      );
-      console.log(response.data);
-    } catch (error) {
-      setError(error);
-      console.error(error);
+    if (!topic) {
+      setError("Please enter a topic for your ebook");
+      return;
     }
+
+    setGenerating(true);
+    setError("");
+
+    try {
+      console.log(user.token)
+
+      const response = await axios.post(
+        "http://localhost:3001/api/chat/unsupervised",
+        { topic, user },
+        { headers: { Authorization: `Bearer ${user.token}` } }
+      );
+
+      const blob = new Blob([response.data], { type: "application/epub+zip" });
+      const url = URL.createObjectURL(blob);
+
+      setGeneratedText(url);
+    } catch (err) {
+      setError(err.message);
+    }
+
     setGenerating(false);
+  };
+
+  const downloadEbook = () => {
+    if (!generatedText) {
+      setError("No ebook has been generated");
+      return;
+    }
+
+    const link = document.createElement("a");
+    link.href = generatedText;
+    link.download = `${topic}.epub`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -36,7 +63,10 @@ const Unsupervised = () => {
           htmlFor="topic"
           className="block text-gray-700 text-lg font-bold mb-2"
         >
-          Enter a topic for <span className="hover:text-accent">your</span>{" "}
+          Enter a topic for{" "}
+          <span className="hover:text-accent transition-all duration-300">
+            your
+          </span>{" "}
           ebook:
         </label>
         <input
@@ -49,19 +79,26 @@ const Unsupervised = () => {
         />
       </div>
       <button
-        className="bg-secondary hover:scale-105 transition-all ease-linear duration-300 text-white font-bold py-2 px-4 rounded"
+        className="bg-secondary hover:scale-105 transition-all ease-linear duration-300 text-white font-bold py-2 px-4 rounded inline-flex items-center"
         disabled={generating}
         onClick={generateEbook}
       >
+        {generating && (
+          <CogIcon className="animate-spin h-5 w-5 mr-2" aria-hidden="true" />
+        )}
         {generating ? "Generating..." : "Generate Ebook"}
       </button>
       {error && <div className="mt-4 text-red-600 font-bold">{error}</div>}
       {generatedText && (
         <div className="mt-6">
-          <h2 className="text-xl font-bold mb-2">Generated Text:</h2>
-          <div className="border border-gray-400 p-4 bg-white max-h-96 overflow-y-scroll">
-            {generatedText}
-          </div>
+          <h2 className="text-xl font-bold mb-2">Generated Ebook:</h2>
+          <a
+            className="text-accent hover:text-accent-hover transition-colors duration-300 ease-in-out"
+            href={generatedText}
+            download
+          >
+            Download Ebook
+          </a>
         </div>
       )}
     </section>

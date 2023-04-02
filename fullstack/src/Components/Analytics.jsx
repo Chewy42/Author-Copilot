@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { ArrowUpIcon, ArrowDownIcon } from "@heroicons/react/solid";
 import {
   LineChart,
   Line,
@@ -22,7 +21,7 @@ const data = [
 ];
 
 const Analytics = () => {
-  const { userName } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const getTimeOfDayGreeting = () => {
     const currentHour = new Date().getHours();
@@ -36,7 +35,8 @@ const Analytics = () => {
     }
   };
 
-  const firstName = userName.split(" ")[0];
+  //get the users first name
+  const firstName = user.name.split(" ")[0];
 
   return (
     <div>
@@ -45,37 +45,40 @@ const Analytics = () => {
       </h2>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-3">
-  <div className="flex flex-col rounded-md bg-white border-2 p-6 drop-shadow-xl">
-    <h3 className="mb-4 flex-grow select-none text-2xl font-bold text-primary">
-      Words Generated <br /> This Month
-    </h3>
-    <div className="select-none text-4xl font-bold text-accent">74,481</div>
-    <p className="mt-2 select-none text-sm text-gray-500">
-      Total words generated for eBooks
-    </p>
-  </div>
+        <div className="flex flex-col rounded-md bg-white border-2 p-6 drop-shadow-xl">
+          <h3 className="mb-4 flex-grow select-none text-2xl font-bold text-primary">
+            Words Generated <br /> This Month
+          </h3>
+          <div className="select-none text-4xl font-bold text-accent">
+            74,481
+          </div>
+          <p className="mt-2 select-none text-sm text-gray-500">
+            Total words generated for eBooks
+          </p>
+        </div>
 
-  <div className="flex flex-col rounded-md bg-white border-2 p-6 drop-shadow-xl">
-    <h3 className="mb-4 flex-grow select-none text-2xl font-bold text-primary">
-      eBooks Written <br /> This Month
-    </h3>
-    <div className="select-none text-4xl font-bold text-accent">4</div>
-    <p className="mt-2 select-none text-sm text-gray-500">
-      Total number of eBooks created
-    </p>
-  </div>
+        <div className="flex flex-col rounded-md bg-white border-2 p-6 drop-shadow-xl">
+          <h3 className="mb-4 flex-grow select-none text-2xl font-bold text-primary">
+            eBooks Written <br /> This Month
+          </h3>
+          <div className="select-none text-4xl font-bold text-accent">4</div>
+          <p className="mt-2 select-none text-sm text-gray-500">
+            Total number of eBooks created
+          </p>
+        </div>
 
-  <div className="flex flex-col rounded-md bg-white border-2 p-6 drop-shadow-xl">
-    <h3 className="mb-4 flex-grow select-none text-2xl font-bold text-primary">
-      Top Genre <br /> This Month
-    </h3>
-    <div className="select-none text-4xl font-bold text-accent">eCommerce</div>
-    <p className="mt-2 select-none text-sm text-gray-500">
-      Most popular genre this month
-    </p>
-  </div>
-</div>
-
+        <div className="flex flex-col rounded-md bg-white border-2 p-6 drop-shadow-xl">
+          <h3 className="mb-4 flex-grow select-none text-2xl font-bold text-primary">
+            Top Genre <br /> This Month
+          </h3>
+          <div className="select-none text-4xl font-bold text-accent">
+            eCommerce
+          </div>
+          <p className="mt-2 select-none text-sm text-gray-500">
+            Most popular genre this month
+          </p>
+        </div>
+      </div>
 
       <div className="mt-8 rounded-md bg-white p-6 shadow-md">
         <h3 className="mb-4 text-xl font-bold text-primary">Word Usage</h3>

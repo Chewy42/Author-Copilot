@@ -4,6 +4,8 @@ import Sidebar from './Sidebar';
 import SupervisedWriting from './SupervisedWriting';
 import Analytics from './Analytics';
 import Unsupervised from './Unsupervised';
+import MyEbooks from './MyEbooks';
+import Settings from './Settings';
 
 const Dashboard = () => {
   const [currentView, setCurrentView] = useState('dashboard');
@@ -16,6 +18,10 @@ const Dashboard = () => {
         return <SupervisedWriting />;
       case 'unsupervised-writing':
         return <Unsupervised />;
+      case 'my-ebook':
+        return <MyEbooks />;
+      case 'settings':
+        return <Settings />;
       default:
         return null;
     }
