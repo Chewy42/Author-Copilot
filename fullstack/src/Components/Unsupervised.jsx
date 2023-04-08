@@ -39,19 +39,19 @@ const Unsupervised = () => {
     setGenerating(false);
   };
 
-  const downloadEbook = () => {
-    if (!generatedText) {
-      setError("No ebook has been generated");
-      return;
-    }
+  // const downloadEbook = () => {
+  //   if (!generatedText) {
+  //     setError("No ebook has been generated");
+  //     return;
+  //   }
 
-    const link = document.createElement("a");
-    link.href = generatedText;
-    link.download = `${topic}.epub`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  //   const link = document.createElement("a");
+  //   link.href = generatedText;
+  //   link.download = `${topic}.epub`;
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
 
   return (
     <section className="container mx-auto px-4 py-6 flex-grow bg-white rounded-xl border-2 text-center hover:scale-[100.78%] drop-shadow-xl ease-linear transition-all duration-300">

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import { ArrowDownIcon } from "@heroicons/react/outline";
 
-const HeroSection = () => {
+const Landing = () => {
   return (
     <section className="bg-gradient-to-r from-purple-700 to-indigo-800 py-20 relative">
       <div className="container mx-auto text-center">
@@ -38,4 +38,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default Landing;

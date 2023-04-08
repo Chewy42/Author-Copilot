@@ -1,1 +1,2 @@
-/authorcopilot/.env
+/**/*.env
+/**/node_modules
