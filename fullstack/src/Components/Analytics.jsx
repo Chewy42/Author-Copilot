@@ -7,8 +7,10 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer
 } from "recharts";
 import AuthContext from "./contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const data = [
   { name: "Week 1", words: 4000 },
@@ -21,7 +23,13 @@ const data = [
 ];
 
 const Analytics = () => {
-  const { user } = useContext(AuthContext);
+  const { handleSignOut, user} = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleSignOutClick = () => {
+    handleSignOut();
+    navigate("/");
+  };
 
   const getTimeOfDayGreeting = () => {
     const currentHour = new Date().getHours();
@@ -35,14 +43,22 @@ const Analytics = () => {
     }
   };
 
-  //get the users first name
   const firstName = user.name.split(" ")[0];
 
   return (
-    <div>
-      <h2 className="mb-6 select-none text-3xl font-semibold text-white">
+    <div className="flex flex-col justify-evenly">
+      <div className="bg-white bg-opacity-[10%] p-6 rounded-xl flex justify-between mb-4">
+      <h2 className="my-auto select-none text-[40px] text-center font-semibold text-white">
         {getTimeOfDayGreeting()}, {firstName}!
       </h2>
+      <button
+                onClick={handleSignOutClick}
+                className="my-auto bg-red-600 hover:scale-[103%] transition-all ease-linear duration-200 text-white hover:bg-red-500 px-4 py-3 rounded-md shadow-md"
+              >
+                Logout
+              </button>
+      </div>
+
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-3">
         <div className="flex flex-col rounded-md bg-white border-2 p-6 drop-shadow-xl">
@@ -83,9 +99,8 @@ const Analytics = () => {
       <div className="mt-8 rounded-md bg-white p-6 shadow-md">
         <h3 className="mb-4 text-xl font-bold text-primary">Word Usage</h3>
 
+      <ResponsiveContainer width="100%" height={200}>
         <LineChart
-          width={780}
-          height={200}
           data={data}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
@@ -101,6 +116,7 @@ const Analytics = () => {
             activeDot={{ r: 8 }}
           />
         </LineChart>
+      </ResponsiveContainer>
       </div>
     </div>
   );

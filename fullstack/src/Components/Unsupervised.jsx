@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { CogIcon } from "@heroicons/react/outline";
 import AuthContext from "./contexts/AuthContext";
 import axios from "axios";
@@ -9,50 +9,37 @@ const Unsupervised = () => {
   const [generatedText, setGeneratedText] = useState("");
   const [error, setError] = useState("");
   const { user } = useContext(AuthContext);
+  const [progress, setProgress] = useState("");
+  const [ws, setWs] = useState(null);
+  const socketRef = useRef();
 
-  const generateEbook = async () => {
+  useEffect(() => {
+    const ws = new WebSocket(`ws://localhost:3001/api/chat/unsupervised?token=${user.token}`);
+    ws.onmessage = (message) => {
+      const response = JSON.parse(message.data);
+      if (response.error) {
+        setError(response.error);
+      } else if (response.data) {
+        const blob = new Blob([new Uint8Array(response.data)], { type: "application/epub+zip" });
+        const url = URL.createObjectURL(blob);
+        setGeneratedText(url);
+        setGenerating(false);
+      }
+    };
+    setWs(ws);
+    return () => ws.close();
+  }, [user]);
+
+  const generateEbook = () => {
     if (!topic) {
       setError("Please enter a topic for your ebook");
       return;
     }
-
     setGenerating(true);
     setError("");
-
-    try {
-      console.log(user.token)
-
-      const response = await axios.post(
-        "http://localhost:3001/api/chat/unsupervised",
-        { topic, user },
-        { headers: { Authorization: `Bearer ${user.token}` } }
-      );
-
-      const blob = new Blob([response.data], { type: "application/epub+zip" });
-      const url = URL.createObjectURL(blob);
-
-      setGeneratedText(url);
-    } catch (err) {
-      setError(err.message);
-    }
-
-    setGenerating(false);
+    ws.send(JSON.stringify({ topic, user, numChapters: 5 }));
   };
-
-  // const downloadEbook = () => {
-  //   if (!generatedText) {
-  //     setError("No ebook has been generated");
-  //     return;
-  //   }
-
-  //   const link = document.createElement("a");
-  //   link.href = generatedText;
-  //   link.download = `${topic}.epub`;
-  //   document.body.appendChild(link);
-  //   link.click();
-  //   document.body.removeChild(link);
-  // };
-
+  
   return (
     <section className="container mx-auto px-4 py-6 flex-grow bg-white rounded-xl border-2 text-center hover:scale-[100.78%] drop-shadow-xl ease-linear transition-all duration-300">
       <h1 className="text-3xl mb-6 font-bold text-center">
@@ -87,6 +74,7 @@ const Unsupervised = () => {
           <CogIcon className="animate-spin h-5 w-5 mr-2" aria-hidden="true" />
         )}
         {generating ? "Generating..." : "Generate Ebook"}
+        {progress && <div className="mt-4 text-gray-600 font-bold">{progress}</div>}
       </button>
       {error && <div className="mt-4 text-red-600 font-bold">{error}</div>}
       {generatedText && (

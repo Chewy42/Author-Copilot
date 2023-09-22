@@ -59,7 +59,7 @@ const Sidebar = ({ onMenuItemClick }) => {
                 setMenuOpen(false);
               }
               }
-              className="text-primary block px-6 py-3 rounded-md hover:bg-gray-200 ease-linear transition-all duration-100"
+              className="text-primary block px-6 py-3 rounded-md bg-gray-200 hover:bg-gray-300 ease-linear transition-all duration-100"
             >
               Supervised Writing
             </Link>
@@ -69,13 +69,13 @@ const Sidebar = ({ onMenuItemClick }) => {
                 setMenuOpen(false);
               }
               }
-              className="text-primary block px-6 py-3 hover:bg-gray-200 rounded-md ease-linear transition-all duration-100 border"
+              className="text-primary block px-6 py-3 bg-gray-200 hover:bg-gray-300 rounded-md ease-linear transition-all duration-100 border"
             >
               Unsupervised Writing
             </Link>
             <Link
               to="dashboard"
-              className="text-primary block px-6 py-3 hover:bg-gray-200 rounded-md ease-linear transition-all duration-100"
+              className="text-primary block px-6 py-3 bg-gray-200 hover:bg-gray-300 rounded-md ease-linear transition-all duration-100"
             >
               Complete Automation
             </Link>

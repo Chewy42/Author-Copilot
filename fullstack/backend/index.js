@@ -2,7 +2,9 @@ require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const expressWs = require('express-ws');
 const app = express();
+expressWs(app);
 
 app.use(express.json());
 app.use(cors());
@@ -24,6 +26,12 @@ mongoose.connection.on("error", (err) => {
 // API routes
 const authRoutes = require("./routes/authRoutes");
 const chatRoutes = require('./routes/chatRoute');
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+
 app.use("/api/auth", authRoutes);
 app.use('/api/chat', chatRoutes);
 

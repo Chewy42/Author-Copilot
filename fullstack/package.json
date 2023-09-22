@@ -28,8 +28,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:backend": "cd backend && npm start",
-    "start:both": "concurrently \"npm start\" \"npm run start:backend\"",
+    "backend": "cd backend && npm start",
+    "dev": "concurrently \"npm start\" \"npm run backend\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
