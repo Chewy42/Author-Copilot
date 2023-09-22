@@ -29,7 +29,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start:backend": "cd backend && npm start",
-    "start:both": "concurrently \"npm start\" \"npm run start:backend\"",
+    "start:both": "concurrently \"bun start\" \"bun run start:backend\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

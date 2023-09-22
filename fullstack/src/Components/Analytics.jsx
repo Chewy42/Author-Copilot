@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   LineChart,
   Line,
@@ -9,6 +10,7 @@ import {
   Legend,
 } from "recharts";
 import AuthContext from "./contexts/AuthContext";
+
 
 const data = [
   { name: "Week 1", words: 4000 },
@@ -21,7 +23,9 @@ const data = [
 ];
 
 const Analytics = () => {
-  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const { user, handleSignOut } = useContext(AuthContext);
 
   const getTimeOfDayGreeting = () => {
     const currentHour = new Date().getHours();
@@ -38,11 +42,23 @@ const Analytics = () => {
   //get the users first name
   const firstName = user.name.split(" ")[0];
 
+  const handleSignOutClick = () => {
+    handleSignOut();
+    navigate("/");
+  };
+
   return (
     <div>
       <h2 className="mb-6 select-none text-3xl font-semibold text-white">
         {getTimeOfDayGreeting()}, {firstName}!
       </h2>
+
+      <button
+        onClick={handleSignOutClick}
+        className="absolute top-4 right-6 bg-red-600 hover:scale-[103%] transition-all ease-linear duration-200 text-white hover:bg-red-500 px-6 py-3 rounded-md shadow-md"
+      >
+        Logout
+      </button>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-3">
         <div className="flex flex-col rounded-md bg-white border-2 p-6 drop-shadow-xl">
