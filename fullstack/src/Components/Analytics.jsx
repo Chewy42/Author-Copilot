@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   LineChart,
   Line,
@@ -10,7 +11,7 @@ import {
   ResponsiveContainer
 } from "recharts";
 import AuthContext from "./contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+
 
 const data = [
   { name: "Week 1", words: 4000 },
@@ -26,11 +27,6 @@ const Analytics = () => {
   const { handleSignOut, user} = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSignOutClick = () => {
-    handleSignOut();
-    navigate("/");
-  };
-
   const getTimeOfDayGreeting = () => {
     const currentHour = new Date().getHours();
 
@@ -44,6 +40,11 @@ const Analytics = () => {
   };
 
   const firstName = user.name.split(" ")[0];
+
+  const handleSignOutClick = () => {
+    handleSignOut();
+    navigate("/");
+  };
 
   return (
     <div className="flex flex-col justify-evenly">
@@ -59,6 +60,13 @@ const Analytics = () => {
               </button>
       </div>
 
+
+      <button
+        onClick={handleSignOutClick}
+        className="absolute top-4 right-6 bg-red-600 hover:scale-[103%] transition-all ease-linear duration-200 text-white hover:bg-red-500 px-6 py-3 rounded-md shadow-md"
+      >
+        Logout
+      </button>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-3">
         <div className="flex flex-col rounded-md bg-white border-2 p-6 drop-shadow-xl">
