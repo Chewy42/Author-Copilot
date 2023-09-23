@@ -7,9 +7,18 @@ const app = express();
 expressWs(app);
 
 app.use(express.json());
+
+
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204
+};
 app.use(cors());
 
 const MONGODB_URI = process.env.MONGODB_URI;
+
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -34,16 +43,6 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use('/api/chat', chatRoutes);
-
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
 
 const PORT = process.env.PORT || 3001;
 

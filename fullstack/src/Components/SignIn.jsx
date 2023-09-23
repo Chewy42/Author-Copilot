@@ -17,13 +17,15 @@ const handleSubmit = async (e) => {
       email,
       password,
     });
+    console.log("RESPONSE: ", response)
     if (response.data) {
-      console.log(response)
+      console.log(response);
       handleSignIn(response.data);
       navigate("/dashboard");
     }
   } catch (error) {
     if (error.response.status === 401) {
+      console.log(error);
       setAlert("Invalid credentials. Please try again.");
     } else {
       setAlert("An unexpected error occurred. Please try again.");
